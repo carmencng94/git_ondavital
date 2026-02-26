@@ -3,4 +3,4 @@ Notas del proyecto:
 - Comitear con mensajes claros y en español
 - Subir a GitHub público para portfolio
 -no usar emoticonos
-- idea 2
+- idea 3
