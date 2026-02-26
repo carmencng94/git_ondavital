@@ -1,0 +1,4 @@
+Notas del proyecto:
+- Usar semantic HTML siempre que sea posible
+- Comitear con mensajes claros y en español
+- Subir a GitHub público para portfolio
