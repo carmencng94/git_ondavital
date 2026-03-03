@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Productos</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; }
+    h1 { color: #2c3e50; }
+    ul { list-style: none; padding: 0; }
+    li { padding: 12px; border-bottom: 1px solid #eee; }
+  </style>
+</head>
+<body>
+  <h1>Productos disponibles</h1>
+  <ul id="productos-lista"></ul>
+
+  <script>
+    // Función asíncrona (porque fetch es asíncrono)
+    async function cargarProductos() {
+      try {
+        // Hacemos la petición GET al backend
+        const respuesta = await fetch('http://localhost:3000/productos');
+        
+        // Convertimos la respuesta a objeto JavaScript
+        const productos = await respuesta.json();
+        
+        // Seleccionamos la lista en el HTML
+        const lista = document.getElementById('productos-lista');
+
+        // Recorremos cada producto y creamos un <li>
+        productos.forEach(producto => {
+          const li = document.createElement('li');
+          // Usamos template string para mostrar título y precio
+          li.textContent = `${producto.titulo} → $${producto.precio}`;
+          lista.appendChild(li);
+        });
+
+      } catch (error) {
+        console.error('Error al obtener los productos:', error);
+        // Podríamos mostrar un mensaje al usuario aquí
+      }
+    }
+
+    // ¡Lanzamos la función al cargar la página!
+    cargarProductos();
+  </script>
+</body>
+</html>
