@@ -10,13 +10,11 @@ const app = express();
 // 4. Le decimos a express: "entiende cuerpos JSON que vengan en las peticiones POST/PUT"
 app.use(express.json());
 
-// 5. Array que simula nuestra "base de datos" (en memoria, se pierde al apagar el servidor)
-const productos = [
-  { id: 'A001', titulo: 'Monitor 27',   precio: 300 },
-  { id: 'A002', titulo: 'CPU-Zi',       precio: 100 },
-  { id: 'A003', titulo: 'Microfono',    precio:  24 }
-];
+// Quitamos el array que estaba aquí
+// const productos = [ ... ]   ← BORRAR ESTO
 
+// Añadimos esta línea al principio (después de los imports)
+import { productos } from './database.js';
 // 6. Definimos la ruta /productos que sabe responder a GET y POST
 app.route('/productos')
   // ── GET /productos ──→ devuelve TODOS los productos
