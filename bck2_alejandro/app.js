@@ -4,11 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 const app = express();
 app.use(express.json());
 
-const productos = [
-  { id: 'A001', titulo: 'Monitor 27', precio: 300 },
-  { id: 'A002', titulo: 'CPU-Zi', precio: 100 },
-  { id: 'A003', titulo: 'Microfono', precio: 24 }
-];
+import { productos } from './database.js';
 
 app.route('/productos')
   .get((req, res) => {
