@@ -12,6 +12,7 @@ app.use(express.json());
 
 // 4. Importamos la "base de datos" en memoria
 import { productos } from './database.js';
+import { validaTitulo, validaPrecio } from './validaciones.js';
 
 // 5. Función reutilizable para validaciones (la mantenemos aunque aquí no la usemos en este endpoint)
 const ejecutaValidacion = (data, validacion, mensajedeError) =>
@@ -45,28 +46,15 @@ app.route('/productos')
     };
 
     // Validación título
-    const valida_titulo = ejecutaValidacion(
-      titulo,
-      data => data && typeof data === 'string' && data.trim().length > 3,
-      'El título debe tener al menos 4 caracteres'
-    );
-
-    if (valida_titulo.error) {
-      return res.status(400).send(valida_titulo.error);
+    const resultadoTitulo = validaTitulo(titulo);
+    if (resultadoTitulo.error) {
+      return res.status(400).send(resultadoTitulo.error);
     }
 
     // Validación precio
-    const valida_precio = ejecutaValidacion(
-      precio,
-      data => {
-        const num = Number(data);
-        return !isNaN(num) && num > 0.1;
-      },
-      'El precio debe ser un número mayor que 0.1 €'
-    );
-
-    if (valida_precio.error) {
-      return res.status(400).send(valida_precio.error);
+    const resultadoPrecio = validaPrecio(precio);
+    if (resultadoPrecio.error) {
+      return res.status(400).send(resultadoPrecio.error);
     }
 
     productos.push(nuevoProducto);
