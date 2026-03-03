@@ -1,7 +1,7 @@
 import express from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import { productos } from './database/productos.js';
-import { validaTitulo, validaPrecio } from './validations.js';
+import { validaTitulo, validaPrecio } from './validation.js';
 import * as productosController from './productos/productos.controller.js';
 
 
