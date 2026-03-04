@@ -43,8 +43,20 @@ app.route('/productos/:id')
     productoEncontrado
       ? res.json(productoEncontrado)
       : res.status(404).send(`El producto con id ${req.params.id} no existe`);
+  })
+  .delete((req, res) => {
+    const indice_a_Borrar = productosController.borrarProducto(req.params.id);
+
+    const mensaje = indice_a_Borrar === -1
+      ? `Producto con id ${req.params.id} no existe. Nada que borrar`
+      : `Borrado producto con id ${req.params.id}`;
+
+    const estado = indice_a_Borrar === -1 ? 404 : 200;
+
+    return res.status(estado).send(mensaje);
   });
 
+  
 app.listen(3000, () => {
   console.log('Activado localhost:3000.');
 });
