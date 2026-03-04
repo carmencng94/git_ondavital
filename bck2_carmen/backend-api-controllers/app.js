@@ -43,27 +43,19 @@ app.route('/productos')
 
     // Validamos título usando la función importada
     // Base sólida: validación separada → reutilizable en otros lugares
-    const valida_titulo = validaTitulo(titulo);
+const resultadoTitulo = validaTitulo(titulo);
+  const resultadoPrecio = validaPrecio(precio);
+  
+    if (resultadoTitulo.error) {
+    return res.status(400).send(resultadoTitulo.error.message);
+  }
 
-    // Validamos precio
-    const valida_precio = validaPrecio(precio);
+  if (resultadoPrecio.error) {
+    return res.status(400).send(resultadoPrecio.error.message);
+  }
 
-    // Si falla título → error 400 y early return (salimos pronto)
-    // Base sólida: early return evita ifs anidados profundos
-    if (valida_titulo.error) {
-      return res.status(400).send(valida_titulo.error);
-    }
-
-    // Igual para precio
-    if (valida_precio.error) {
-      return res.status(400).send(valida_precio.error);
-    }
-
-    // Si llegamos aquí → todo válido → guardamos
-    productos.push(nuevoProducto);
-
-    // Respuesta: 201 Created + el producto nuevo en JSON
-    res.status(201).json(nuevoProducto);
+  productos.push(nuevoProducto);
+  res.status(201).json(nuevoProducto);
   });
 
 // ──────────────────────────────────────────────────────────────
