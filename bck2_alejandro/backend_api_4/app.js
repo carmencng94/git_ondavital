@@ -2,6 +2,8 @@ import express from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import { productos } from './database/productos.js';
 import { validaTitulo, validaPrecio } from './validations.js';
+import * as productosController from './productos/productos.controller.js';
+
 
 const app = express();
 app.use(express.json());
@@ -36,7 +38,7 @@ app.route('/productos')
 
 app.route('/productos/:id')
   .get((req, res) => {
-    const productoEncontrado = productos.find(producto => producto.id == req.params.id);
+    const productoEncontrado = productosController.encontrarProducto(req.params.id);
 
     productoEncontrado
       ? res.json(productoEncontrado)
