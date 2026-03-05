@@ -1,15 +1,11 @@
 import express from 'express';
 import { v4 as uuidv4 } from 'uuid';
-import { productos } from './database/productos.js';
+import { productos } from './database/sqlite.js';
 import { validaTitulo, validaPrecio } from './validations.js';
-import * as productosController from './productos/productos.controller.js';
-import express from 'express';
-import * as productosController from './productos/productos.controller.js';
-import { validaTitulo, validaPrecio } from './validations.js';
+import * as productosController from './procuctos/productos.controller.js';
 
 // utilidades sqlite
 import { crearBaseDatos, agregarSeisProductos } from './database/sqlite.js';
-
 
 const app = express();
 app.use(express.json());
@@ -39,7 +35,7 @@ app.route('/productos')
     }
 
     productos.push(nuevoProducto);
-    res.status(201).json(nuevoProducto); // respuesta creado producto
+    res.status(201).json(nuevoProducto);
   });
 
 app.route('/productos/:id')
@@ -62,14 +58,6 @@ app.route('/productos/:id')
     return res.status(estado).send(mensaje);
   });
 
-
-  import express from 'express';
-import * as productosController from './productos/productos.controller.js';
-import { validaTitulo, validaPrecio } from './validations.js';
-
-// utilidades sqlite
-import { crearBaseDatos, agregarSeisProductos } from './database/sqlite.js';
-  
 app.listen(3000, () => {
   console.log('Activado localhost:3000.');
 });
