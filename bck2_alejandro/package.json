@@ -1,14 +1,14 @@
 {
   "name": "bck2_alejandro",
   "version": "1.0.0",
-
   "type": "module",
   "main": "app.js",
   "scripts": {
     "start": "programa.js"
   },
   "dependencies": {
-    "express": "^4.18.2",
+    "expres": "^0.0.5",
+    "express": "^4.22.1",
     "uuid": "^9.0.0"
   }
 }
