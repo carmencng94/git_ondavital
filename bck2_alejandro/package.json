@@ -7,7 +7,15 @@
     "start": "programa.js"
   },
   "dependencies": {
+<<<<<<< HEAD
     "express": "^4.22.1",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7",
     "uuid": "^9.0.1"
+=======
+    "expres": "^0.0.5",
+    "express": "^4.22.1",
+    "uuid": "^9.0.0"
+>>>>>>> Alex
   }
 }
